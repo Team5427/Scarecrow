@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	
 	public static SpeedController head;
 	public static SpeedController arm;
-	public static SpeedController chest;
+	public static SpeedController gears;
 	
 	public static float time_switch;
 
@@ -48,9 +48,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		head = new PWMVictorSPX(3);
-		arm = new PWMVictorSPX(0);
-		chest = new PWMVictorSPX(7);		
+		head = new PWMVictorSPX(2);
+		arm = new PWMVictorSPX(1);
+		gears = new PWMVictorSPX(0);		
 	}
 
 	/**
@@ -81,9 +81,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		new MoveHead(0.2).start();
-		new MoveArm(0.2).start();
-		chest.set(0.2);
+		new MoveHead(0.1).start();
+		new MoveArm(0.1).start();
+		gears.set(0.1);
 	}
 
 	/**

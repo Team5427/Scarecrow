@@ -16,6 +16,7 @@ import org.usfirst.frc.team5427.robot.Robot;
 public class MoveHead extends Command {
 	
 	public double speed;
+	public static boolean pause = false;
 	
 	public MoveHead(double speed) {
 		// Use requires() here to declare subsystem dependencies
@@ -28,8 +29,14 @@ public class MoveHead extends Command {
 	@Override
 	protected void initialize() {
 		setTimeout(2.0);
-
-		Robot.head.set(speed);		
+		if(!pause) {
+			Robot.head.set(speed);
+			setTimeout(2.0);
+		}
+		else {
+			Robot.head.set(0);
+			setTimeout(1.0);
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -46,6 +53,8 @@ public class MoveHead extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		if(!pause)
+			pause = !pause;
 		new MoveHead(-this.speed).start();
 	}
 
