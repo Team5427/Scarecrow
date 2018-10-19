@@ -11,9 +11,11 @@ package org.usfirst.frc.team5427.robot;
 import org.usfirst.frc.team5427.robot.commands.MoveArm;
 import org.usfirst.frc.team5427.robot.commands.MoveHead;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -37,7 +39,10 @@ public class Robot extends IterativeRobot {
 	public static SpeedController arm;
 	public static SpeedController gears;
 	
+	public static DigitalInput limitRight_Head;
+	
 	public static float time_switch;
+	
 
 
 
@@ -51,6 +56,8 @@ public class Robot extends IterativeRobot {
 		head = new PWMVictorSPX(2);
 		arm = new PWMVictorSPX(1);
 		gears = new PWMVictorSPX(0);		
+		limitRight_Head = new DigitalInput(0);
+	
 	}
 
 	/**
@@ -81,9 +88,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		new MoveHead(0.1).start();
-		new MoveArm(0.1).start();
-		gears.set(0.1);
+		new MoveHead(-0.1).start();
+		new MoveArm(0.15).start();
+		gears.set(0.15);
 	}
 
 	/**

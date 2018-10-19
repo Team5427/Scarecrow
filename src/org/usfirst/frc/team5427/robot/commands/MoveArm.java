@@ -27,7 +27,7 @@ public class MoveArm extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(2.0);
+		setTimeout(1.0);
 
 		Robot.arm.set(speed);
 		
